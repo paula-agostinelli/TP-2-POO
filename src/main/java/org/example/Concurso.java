@@ -9,6 +9,13 @@ import java.util.Map;
 
 
 public class Concurso {
+    static final String ERROR_FECHAS_CONCURSO = "La fecha de finalización no puede ser anterior a la fecha de inicio del concurso.";
+    static final String ERROR_NOMBRE_CONCURSO = "El nombre proporcionado no es válido. Ingrese un nombre correcto.";
+    static final String ERROR_PARTICIPANTE_YA_INSCRIPTO = "El participante ya fue inscripto.";
+    static final String ERROR_FECHA_INSCRIPCION = "La inscripción al concurso ya cerró";
+    static final String ERROR_ID_CONCURSO = "No es correcto el ID para identificar al concurso";
+
+
     private  String idConcurso;
     private final LocalDate fechaInicio;
     private LocalDate fechaFin;
@@ -40,10 +47,9 @@ public class Concurso {
         if (!participantes.contains(p)) {
             this.participantes.add(p);
             this.inscripciones.put(p, LocalDate.now());
-            String idP = p.getIdParticipante();
-            String fecha= LocalDateTime.now().toString();--
+           inscripcion.registrar(LocalDate.parse(fechaInscripcion), p.obtenerId(), idConcurso);
 
-                    this.inscripcion.registrar(LocalDate.parse(fecha),idP,idConcurso);
+           notificacion.enviar(p.getEmail(), "Te inscribiste al concurso " + idConcurso + " con éxito.");
 
             if (fechaInscripcion.isEqual(fechaInicio)) {
                 p.sumarPuntos(10);
@@ -59,6 +65,6 @@ public class Concurso {
         LocalDate fechaInscripcion = obtenerFechaIncripcion(p);
         return fechaInscripcion != null && fechaInscripcion.isEqual(fechaInicio);
     }
-}
 
 }
+

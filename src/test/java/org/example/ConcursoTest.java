@@ -1,20 +1,19 @@
 package org.example;
 
-import static org.junit.jupiter.api.Assertions.*;
-import main.java.org.example.Concurso;
-import main.java.org.example.Inscripcion;
-import main.java.org.example.Participante;
+
+
+import Persistencia.InscripcionEnDisco;
 import org.junit.Test;
-import persistencia.InscripcionEnDisco;
 
 import java.time.LocalDate;
 
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 class ConcursoTest {
+
     @Test
     public void seInscribeOk() {
-        Participante p = new Participante(42708536, "Paula Agostinelli","15_p");
+        Participante p = new Participante(42708536, "Paula Agostinelli","15_p","ejemplo@gmail.com");
         Concurso c = new Concurso(LocalDate.now().plusDays(2), LocalDate.now().plusDays(7),"MIT");
         Exception exception = assertThrows(IllegalStateException.class, () -> {
             c.inscribir(p);  // Se espera que se lance una excepción si la fecha de inscripción está fuera del rango
@@ -48,4 +47,3 @@ class ConcursoTest {
 
 }
 
-}
