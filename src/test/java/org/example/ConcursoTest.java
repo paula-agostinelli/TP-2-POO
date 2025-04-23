@@ -38,7 +38,12 @@ class ConcursoTest {
     @Test
     public void inscripcionFueraDeTermino() {
         Participante p = new Participante(42708536, "Paula Agostinelli","17_P");
-        Concurso c = new Concurso(LocalDate.now().plusDays(1), LocalDate.now().plusDays(2),new Inscripcion());
+        Concurso c = new Concurso(LocalDate.now().plusDays(1), LocalDate.now().plusDays(2), new Inscripcion(p) {
+            @Override
+            public void registrar(LocalDate fechaInscripcion, String idParticipante, String idConcurso) {
+
+            }
+        });
 
         Exception exception = assertThrows(IllegalStateException.class, () -> c.inscribir(p));
 

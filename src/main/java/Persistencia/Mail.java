@@ -18,7 +18,7 @@ public class Mail implements Notificacion {
 
 
     @Override
-    public void enviarNotificacion(String destiantario, String asunto, String mensaje) {
+    public void enviarNotificacion(String destinatario, String asunto, String mensaje) {
 
         Email email = EmailBuilder.startingBlank()
                 .from("Remitente Prueba", from)

@@ -15,7 +15,7 @@ public class InscripcionEnDisco implements Inscripcion {
 
     public InscripcionEnDisco (String registro){
 
-        this.registro=registro;
+        this.registro=registro; // (registro el la ruta del archivo)
     }
 
     @Override
@@ -26,7 +26,7 @@ public class InscripcionEnDisco implements Inscripcion {
         Path path = Paths.get(registro);
 
         try {
-            // Escribe la línea en el archivo (agrega si existe, crea si no)
+
             Files.write(path, Collections.singletonList(linea), StandardCharsets.UTF_16BE,
                     Files.exists(path, LinkOption.NOFOLLOW_LINKS) ? StandardOpenOption.APPEND : StandardOpenOption.CREATE);
         } catch (IOException e) {
